@@ -123,6 +123,25 @@
     </main>
   </div>
 
+  <footer class="footer">
+    <div class="brand"><a href="https://www.flu.ruhr" target="_blank" rel="noopener">www.flu.ruhr</a></div>
+    <div>© 2025 Flu – New Fine Art</div>
+  </footer>
+
+  <div class="modal" id="pdfModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="PDF-Ansicht">
+    <div class="dialog">
+      <div class="dialog-hd">
+        <div class="dialog-ttl" id="pdfTitle">PDF anzeigen</div>
+        <div class="dialog-actions">
+          <a class="m-btn" id="pdfNewTab" href="#" target="_blank" rel="noopener">In neuem Tab</a>
+          <button class="m-btn" id="closePdf" type="button">Schließen</button>
+        </div>
+      </div>
+      <iframe class="frame" id="pdfFrame" src=""></iframe>
+    </div>
+  </div>
+
+
   <script src="werke.js"></script>
   <script>
     const params = new URLSearchParams(window.location.search);
@@ -130,6 +149,44 @@
     const werk = window.WERKE.find(w => w.id === werkId);
 
     if (werk) {
+  document.title = werk.ort + " – " + werk.werk;
+  document.getElementById("ort").textContent = werk.ort;
+  document.getElementById("ausstellungDatum").textContent = werk.ausstellung + " · " + werk.datum;
+  document.getElementById("werkSerie").textContent = werk.werk + " – ein Werk aus der Werkserie „" + werk.serie + "“";
+  document.getElementById("audio-link").href = werk.audio;
+  document.getElementById("pdf-link").href = werk.pdf;
+  document.getElementById("audio-src").src = werk.audio;
+  document.getElementById("player").load();
+
+  document.getElementById("pdfFrame").src = werk.pdf + "#toolbar=1&view=FitH";
+  document.getElementById("pdfNewTab").href = werk.pdf;
+  document.getElementById("pdfTitle").textContent = "PDF: " + werk.werk;
+} else {
+  document.querySelector(".wrap").innerHTML = "<p>Kein gültiges Werk gefunden.</p>";
+}
+
+const modal = document.getElementById('pdfModal');
+const pdfBtn = document.getElementById('openPdf');
+const closeBtn = document.getElementById('closePdf');
+const pdfFrame = document.getElementById('pdfFrame');
+const pdfNewTab = document.getElementById('pdfNewTab');
+const pdfTitle = document.getElementById('pdfTitle');
+
+pdfBtn.addEventListener('click', () => {
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+});
+closeBtn.addEventListener('click', closeModal);
+modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+function closeModal(){
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+}
+
       document.title = werk.ort + " – " + werk.werk;
       document.getElementById("ort").textContent = werk.ort;
       document.getElementById("ausstellungDatum").textContent = werk.ausstellung + " · " + werk.datum;
