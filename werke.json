@@ -1,22 +1,82 @@
 [
   {
-    "id": "resonanzkern",
-    "werk": "Resonanzkern",
+    "id": "bodenproben-der-erinnerung",
+    "werk": "Bodenproben der Erinnerung",
     "serie": "Was bleibt",
-    "ausstellung": "Crossing Cultures",
+    "ausstellung": "Bridging Cultures",
     "ort": "Kühlhaus Berlin",
     "datum": "03.10.25 – 05.10.25",
-    "audio": "Resonanzkern.mp3",
-    "pdf": "Resonanzkern.pdf"
+    "audio": "Bodenproben der Erinnerung.mp3",
+    "pdf": "Bodenproben der Erinnerung.pdf"
   },
   {
-    "id": "lichtpfad",
-    "werk": "Lichtpfad",
-    "serie": "Grenzzeit",
-    "ausstellung": "Im Ich",
-    "ort": "Kunstverein Hattingen",
-    "datum": "10.11.25 – 20.12.25",
-    "audio": "Lichtpfad.mp3",
-    "pdf": "Lichtpfad.pdf"
+    "id": "die-letzten-funde",
+    "werk": "Die letzten Funde unter Tage",
+    "serie": "Was bleibt",
+    "ausstellung": "Bridging Cultures",
+    "ort": "Kühlhaus Berlin",
+    "datum": "03.10.25 – 05.10.25",
+    "audio": "Die letzten Funde unter Tage.mp3",
+    "pdf": "Die letzten Funde unter Tage.pdf"
+  },
+  {
+    "id": "feuerschacht",
+    "werk": "Feuerschacht",
+    "serie": "Was bleibt",
+    "ausstellung": "Bridging Cultures",
+    "ort": "Kühlhaus Berlin",
+    "datum": "03.10.25 – 05.10.25",
+    "audio": "Feuerschacht.mp3",
+    "pdf": "Feuerschacht.pdf"
+  },
+  {
+    "id": "glutkern",
+    "werk": "Glutkern",
+    "serie": "Was bleibt",
+    "ausstellung": "Bridging Cultures",
+    "ort": "Kühlhaus Berlin",
+    "datum": "03.10.25 – 05.10.25",
+    "audio": "Glutkern.mp3",
+    "pdf": "Glutkern.pdf"
+  },
+  {
+    "id": "im-feuer-gehaertet",
+    "werk": "Im Feuer gehärtet",
+    "serie": "Was bleibt",
+    "ausstellung": "Bridging Cultures",
+    "ort": "Kühlhaus Berlin",
+    "datum": "03.10.25 – 05.10.25",
+    "audio": "Im Feuer gehärtet.mp3",
+    "pdf": "Im Feuer gehärtet.pdf"
+  },
+  {
+    "id": "letzte-schicht-licht",
+    "werk": "Letzte Schicht Licht",
+    "serie": "Was bleibt",
+    "ausstellung": "Bridging Cultures",
+    "ort": "Kühlhaus Berlin",
+    "datum": "03.10.25 – 05.10.25",
+    "audio": "Letzte Schicht Licht.mp3",
+    "pdf": "Letzte Schicht Licht.pdf"
+  },
+  {
+    "id": "montan",
+    "werk": "Montan",
+    "serie": "Was bleibt",
+    "ausstellung": "Bridging Cultures",
+    "ort": "Kühlhaus Berlin",
+    "datum": "03.10.25 – 05.10.25",
+    "audio": "Montan.mp3",
+    "pdf": "Montan.pdf"
+  },
+  {
+    "id": "kernbruch",
+    "werk": "Kernbruch",
+    "serie": "Was bleibt",
+    "ausstellung": "Bridging Cultures",
+    "ort": "Kühlhaus Berlin",
+    "datum": "03.10.25 – 05.10.25",
+    "audio": "Kernbruch.mp3",
+    "pdf": "Kernbruch.pdf"
   }
 ]
