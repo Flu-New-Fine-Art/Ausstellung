@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Werkansicht</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; max-width: 700px; margin: auto; }
+    .note { color: darkred; font-weight: bold; }
+    .btn { display: inline-block; margin: 8px 4px; padding: 8px 12px; background: #f0f0f0; border: 1px solid #ccc; border-radius: 8px; text-decoration: none; color: black; }
+    .btn:hover { background: #e0e0e0; }
+  </style>
+</head>
+<body>
+  <h1 id="werk-title">Lade Werk …</h1>
+  <div id="exhibition-info"></div>
+  <h2 id="werk-serie"></h2>
+
+  <div>
+    <a class="btn" id="audio-link" href="#" target="_blank">🎧 Audio</a>
+    <a class="btn" id="pdf-link" href="#" target="_blank">📄 PDF anzeigen</a>
+    <a class="btn" href="https://www.flu.ruhr/uber" target="_blank">ℹ️ Info Künstler</a>
+  </div>
+
+  <p class="note">Bitte Kopfhörer verwenden oder die Lautstärke so wählen, dass andere Besucher nicht gestört werden.</p>
+
+  <script>
+    async function loadWerk() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const werkId = urlParams.get("id");
+      if (!werkId) {
+        document.body.innerHTML = "<p>Fehlende ID in der URL. Beispiel: ?id=resonanzkern</p>";
+        return;
+      }
+
+      const response = await fetch("werke.json");
+      const werke = await response.json();
+      const werk = werke.find(w => w.id === werkId);
+
+      if (!werk) {
+        document.body.innerHTML = "<p>Werk nicht gefunden.</p>";
+        return;
+      }
+
+      document.getElementById("werk-title").textContent = werk.werk;
+      document.getElementById("werk-serie").textContent = `Werk aus der Serie „${werk.serie}“`;
+      document.getElementById("exhibition-info").textContent = `${werk.ort} – ${werk.ausstellung} · ${werk.datum}`;
+      document.getElementById("audio-link").href = werk.audio;
+      document.getElementById("pdf-link").href = werk.pdf;
+    }
+
+    loadWerk();
+  </script>
+</body>
+</html>
