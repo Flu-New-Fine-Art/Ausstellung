@@ -96,6 +96,73 @@
       text-align: center;
       margin-top: 8px;
     }
+    .footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border-top: 1px solid var(--rule);
+      text-align: center;
+      padding: 5px;
+      color: var(--muted);
+      line-height: 1.3;
+    }
+    .brand {
+      font-weight: 700;
+      font-size: 12px;
+    }
+    .brand a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid #aaa;
+    }
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,.6);
+      z-index: 9999;
+      padding: 16px;
+    }
+    .modal.open { display: flex; }
+    .dialog {
+      width: min(100%,980px);
+      height: min(100%,84vh);
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0,0,0,.25);
+      overflow: hidden;
+    }
+    .dialog-hd {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .dialog-ttl { font-weight: 700; }
+    .dialog-actions { display: flex; gap: 8px; }
+    .m-btn {
+      appearance: none;
+      border: 2px solid #111;
+      background: #fff;
+      border-radius: 10px;
+      padding: 6px 10px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .m-btn:hover {
+      background: #f7f5f1;
+      border-color: var(--accent);
+    }
+    .frame {
+      width: 100%;
+      height: calc(100% - 42px);
+      border: 0;
+    }
   </style>
 </head>
 <body>
@@ -141,7 +208,6 @@
     </div>
   </div>
 
-
   <script src="werke.js"></script>
   <script>
     const params = new URLSearchParams(window.location.search);
@@ -149,44 +215,6 @@
     const werk = window.WERKE.find(w => w.id === werkId);
 
     if (werk) {
-  document.title = werk.ort + " – " + werk.werk;
-  document.getElementById("ort").textContent = werk.ort;
-  document.getElementById("ausstellungDatum").textContent = werk.ausstellung + " · " + werk.datum;
-  document.getElementById("werkSerie").textContent = werk.werk + " – ein Werk aus der Werkserie „" + werk.serie + "“";
-  document.getElementById("audio-link").href = werk.audio;
-  document.getElementById("pdf-link").href = werk.pdf;
-  document.getElementById("audio-src").src = werk.audio;
-  document.getElementById("player").load();
-
-  document.getElementById("pdfFrame").src = werk.pdf + "#toolbar=1&view=FitH";
-  document.getElementById("pdfNewTab").href = werk.pdf;
-  document.getElementById("pdfTitle").textContent = "PDF: " + werk.werk;
-} else {
-  document.querySelector(".wrap").innerHTML = "<p>Kein gültiges Werk gefunden.</p>";
-}
-
-const modal = document.getElementById('pdfModal');
-const pdfBtn = document.getElementById('openPdf');
-const closeBtn = document.getElementById('closePdf');
-const pdfFrame = document.getElementById('pdfFrame');
-const pdfNewTab = document.getElementById('pdfNewTab');
-const pdfTitle = document.getElementById('pdfTitle');
-
-pdfBtn.addEventListener('click', () => {
-  modal.classList.add('open');
-  modal.setAttribute('aria-hidden','false');
-  document.body.style.overflow='hidden';
-});
-closeBtn.addEventListener('click', closeModal);
-modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
-
-function closeModal(){
-  modal.classList.remove('open');
-  modal.setAttribute('aria-hidden','true');
-  document.body.style.overflow='';
-}
-
       document.title = werk.ort + " – " + werk.werk;
       document.getElementById("ort").textContent = werk.ort;
       document.getElementById("ausstellungDatum").textContent = werk.ausstellung + " · " + werk.datum;
@@ -195,8 +223,35 @@ function closeModal(){
       document.getElementById("pdf-link").href = werk.pdf;
       document.getElementById("audio-src").src = werk.audio;
       document.getElementById("player").load();
+
+      document.getElementById("pdfFrame").src = werk.pdf + "#toolbar=1&view=FitH";
+      document.getElementById("pdfNewTab").href = werk.pdf;
+      document.getElementById("pdfTitle").textContent = "PDF: " + werk.werk;
     } else {
       document.querySelector(".wrap").innerHTML = "<p>Kein gültiges Werk gefunden.</p>";
+    }
+
+    const modal = document.getElementById('pdfModal');
+    const pdfBtn = document.getElementById('pdf-link');
+    const closeBtn = document.getElementById('closePdf');
+    const pdfFrame = document.getElementById('pdfFrame');
+    const pdfNewTab = document.getElementById('pdfNewTab');
+    const pdfTitle = document.getElementById('pdfTitle');
+
+    pdfBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden','false');
+      document.body.style.overflow='hidden';
+    });
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+    function closeModal(){
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden','true');
+      document.body.style.overflow='';
     }
   </script>
 </body>
