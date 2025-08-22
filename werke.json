@@ -1,81 +1,81 @@
 [
   {
-    "id": "bodenproben-der-erinnerung",
-    "werk": "Bodenproben der Erinnerung",
-    "serie": "Was bleibt",
-    "ausstellung": "Bridging Cultures",
+    "id": "-bodenproben-der-erinnerung",
     "ort": "Kühlhaus Berlin",
+    "ausstellung": "Bridging Cultures",
     "datum": "03.10.25 – 05.10.25",
-    "audio": "Bodenproben der Erinnerung.mp3",
-    "pdf": "Bodenproben der Erinnerung.pdf"
+    "werk": " Bodenproben der Erinnerung",
+    "serie": "Was bleibt",
+    "audio": " Bodenproben der Erinnerung.mp3",
+    "pdf": " Bodenproben der Erinnerung.pdf"
   },
   {
-    "id": "die-letzten-funde",
-    "werk": "Die letzten Funde unter Tage",
-    "serie": "Was bleibt",
-    "ausstellung": "Bridging Cultures",
+    "id": "-die-letzten-funde-unter-tage",
     "ort": "Kühlhaus Berlin",
+    "ausstellung": "Bridging Cultures",
     "datum": "03.10.25 – 05.10.25",
-    "audio": "Die letzten Funde unter Tage.mp3",
-    "pdf": "Die letzten Funde unter Tage.pdf"
+    "werk": " Die letzten Funde unter Tage",
+    "serie": "Was bleibt",
+    "audio": " Die letzten Funde unter Tage.mp3",
+    "pdf": " Die letzten Funde unter Tage.pdf"
   },
   {
-    "id": "feuerschacht",
-    "werk": "Feuerschacht",
-    "serie": "Was bleibt",
-    "ausstellung": "Bridging Cultures",
+    "id": "-feuerschacht",
     "ort": "Kühlhaus Berlin",
+    "ausstellung": "Bridging Cultures",
     "datum": "03.10.25 – 05.10.25",
-    "audio": "Feuerschacht.mp3",
-    "pdf": "Feuerschacht.pdf"
+    "werk": " Feuerschacht",
+    "serie": "Was bleibt",
+    "audio": " Feuerschacht.mp3",
+    "pdf": " Feuerschacht.pdf"
   },
   {
-    "id": "glutkern",
-    "werk": "Glutkern",
-    "serie": "Was bleibt",
-    "ausstellung": "Bridging Cultures",
+    "id": "-glutkern",
     "ort": "Kühlhaus Berlin",
+    "ausstellung": "Bridging Cultures",
     "datum": "03.10.25 – 05.10.25",
-    "audio": "Glutkern.mp3",
-    "pdf": "Glutkern.pdf"
+    "werk": " Glutkern",
+    "serie": "Was bleibt",
+    "audio": " Glutkern.mp3",
+    "pdf": " Glutkern.pdf"
   },
   {
-    "id": "im-feuer-gehaertet",
-    "werk": "Im Feuer gehärtet",
-    "serie": "Was bleibt",
-    "ausstellung": "Bridging Cultures",
+    "id": "-im-feuer-gehärtet",
     "ort": "Kühlhaus Berlin",
+    "ausstellung": "Bridging Cultures",
     "datum": "03.10.25 – 05.10.25",
-    "audio": "Im Feuer gehärtet.mp3",
-    "pdf": "Im Feuer gehärtet.pdf"
+    "werk": " Im Feuer gehärtet",
+    "serie": "Was bleibt",
+    "audio": " Im Feuer gehärtet.mp3",
+    "pdf": " Im Feuer gehärtet.pdf"
   },
   {
-    "id": "letzte-schicht-licht",
-    "werk": "Letzte Schicht Licht",
-    "serie": "Was bleibt",
-    "ausstellung": "Bridging Cultures",
+    "id": "-letzte-schicht-licht",
     "ort": "Kühlhaus Berlin",
+    "ausstellung": "Bridging Cultures",
     "datum": "03.10.25 – 05.10.25",
-    "audio": "Letzte Schicht Licht.mp3",
-    "pdf": "Letzte Schicht Licht.pdf"
+    "werk": " Letzte Schicht Licht",
+    "serie": "Was bleibt",
+    "audio": " Letzte Schicht Licht.mp3",
+    "pdf": " Letzte Schicht Licht.pdf"
   },
   {
-    "id": "montan",
-    "werk": "Montan",
-    "serie": "Was bleibt",
-    "ausstellung": "Bridging Cultures",
+    "id": "-montan",
     "ort": "Kühlhaus Berlin",
+    "ausstellung": "Bridging Cultures",
     "datum": "03.10.25 – 05.10.25",
-    "audio": "Montan.mp3",
-    "pdf": "Montan.pdf"
+    "werk": " Montan",
+    "serie": "Was bleibt",
+    "audio": " Montan.mp3",
+    "pdf": " Montan.pdf"
   },
   {
     "id": "kernbruch",
+    "ort": "Kühlhaus Berlin",
+    "ausstellung": "Bridging Cultures",
+    "datum": "03.10.25 – 05.10.25",
     "werk": "Kernbruch",
     "serie": "Was bleibt",
-    "ausstellung": "Bridging Cultures",
-    "ort": "Kühlhaus Berlin",
-    "datum": "03.10.25 – 05.10.25",
     "audio": "Kernbruch.mp3",
     "pdf": "Kernbruch.pdf"
   }
