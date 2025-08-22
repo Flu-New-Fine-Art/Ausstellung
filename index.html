@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -224,7 +225,7 @@
       document.getElementById("audio-src").src = werk.audio;
       document.getElementById("player").load();
 
-      document.getElementById("pdfFrame").src = werk.pdf + "#toolbar=1&view=FitH";
+      document.getElementById("pdfFrame").src = werk.pdf + "#zoom=page-width";
       document.getElementById("pdfNewTab").href = werk.pdf;
       document.getElementById("pdfTitle").textContent = "PDF: " + werk.werk;
     } else {
