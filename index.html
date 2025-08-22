@@ -130,12 +130,15 @@
     }
     .modal.open { display: flex; }
     .dialog {
-      width: min(100%,980px);
-      height: min(100%,84vh);
+      width: 100%;
+      max-width: 1000px;
+      height: 90vh;
       background: #fff;
       border-radius: 12px;
       box-shadow: 0 10px 40px rgba(0,0,0,.25);
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
     .dialog-hd {
       display: flex;
@@ -159,9 +162,9 @@
       background: #f7f5f1;
       border-color: var(--accent);
     }
-    .frame {
+    iframe.pdfjs-frame {
       width: 100%;
-      height: calc(100% - 42px);
+      flex-grow: 1;
       border: 0;
     }
   </style>
@@ -176,7 +179,7 @@
 
       <div class="actions">
         <a class="btn" id="audio-link" href="#" target="_blank">🎧 Audio</a>
-        <a class="btn" id="pdf-link" href="#" target="_blank">📄 PDF anzeigen</a>
+        <button class="btn" id="pdf-link">📄 PDF anzeigen</button>
         <a class="btn" href="https://www.flu.ruhr/uber" target="_blank">ℹ️ Info Künstler</a>
       </div>
 
@@ -196,16 +199,16 @@
     <div>© 2025 Flu – New Fine Art</div>
   </footer>
 
-  <div class="modal" id="pdfModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="PDF-Ansicht">
+  <div class="modal" id="pdfModal">
     <div class="dialog">
       <div class="dialog-hd">
-        <div class="dialog-ttl" id="pdfTitle">PDF anzeigen</div>
+        <div class="dialog-ttl" id="pdfTitle">PDF: Werk</div>
         <div class="dialog-actions">
           <a class="m-btn" id="pdfNewTab" href="#" target="_blank" rel="noopener">In neuem Tab</a>
           <button class="m-btn" id="closePdf" type="button">Schließen</button>
         </div>
       </div>
-      <iframe class="frame" id="pdfFrame" src=""></iframe>
+      <iframe class="pdfjs-frame" id="pdfFrame" allowfullscreen></iframe>
     </div>
   </div>
 
@@ -221,11 +224,12 @@
       document.getElementById("ausstellungDatum").textContent = werk.ausstellung + " · " + werk.datum;
       document.getElementById("werkSerie").textContent = werk.werk + " – ein Werk aus der Werkserie „" + werk.serie + "“";
       document.getElementById("audio-link").href = werk.audio;
-      document.getElementById("pdf-link").href = werk.pdf;
       document.getElementById("audio-src").src = werk.audio;
       document.getElementById("player").load();
 
-      document.getElementById("pdfFrame").src = werk.pdf + "#zoom=page-width";
+      const pdfUrl = location.origin + "/" + werk.pdf;
+      const viewerUrl = "https://mozilla.github.io/pdf.js/web/viewer.html?file=" + encodeURIComponent(pdfUrl);
+      document.getElementById("pdfFrame").src = viewerUrl;
       document.getElementById("pdfNewTab").href = werk.pdf;
       document.getElementById("pdfTitle").textContent = "PDF: " + werk.werk;
     } else {
@@ -233,27 +237,28 @@
     }
 
     const modal = document.getElementById('pdfModal');
-    const pdfBtn = document.getElementById('pdf-link');
+    const openBtn = document.getElementById('pdf-link');
     const closeBtn = document.getElementById('closePdf');
-    const pdfFrame = document.getElementById('pdfFrame');
-    const pdfNewTab = document.getElementById('pdfNewTab');
-    const pdfTitle = document.getElementById('pdfTitle');
 
-    pdfBtn.addEventListener('click', (e) => {
-      e.preventDefault();
+    openBtn.addEventListener('click', () => {
       modal.classList.add('open');
       modal.setAttribute('aria-hidden','false');
       document.body.style.overflow='hidden';
     });
-    closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
-    function closeModal(){
+    closeBtn.addEventListener('click', () => {
       modal.classList.remove('open');
       modal.setAttribute('aria-hidden','true');
       document.body.style.overflow='';
-    }
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden','true');
+        document.body.style.overflow='';
+      }
+    });
   </script>
 </body>
 </html>
