@@ -3,53 +3,144 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Werkansicht</title>
+  <title>Ausstellung – Werk</title>
   <style>
-    body { font-family: sans-serif; padding: 20px; max-width: 700px; margin: auto; }
-    .note { color: darkred; font-weight: bold; }
-    .btn { display: inline-block; margin: 8px 4px; padding: 8px 12px; background: #f0f0f0; border: 1px solid #ccc; border-radius: 8px; text-decoration: none; color: black; }
-    .btn:hover { background: #e0e0e0; }
+    :root {
+      --fg: #111; --muted: #666; --rule: #e9e9e9; --danger: #b00020; --accent: #c5ad86;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%;
+      background: #fff;
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-bottom: 80px;
+    }
+    .wrap {
+      width: 100%;
+      max-width: 720px;
+      padding: 8px 12px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      text-align: center;
+    }
+    .top-logo {
+      max-width: 90px;
+      height: auto;
+      margin-bottom: 6px;
+    }
+    h1 {
+      font-weight: 800;
+      font-size: clamp(18px, 5vw, 22px);
+      margin: 2px 0;
+    }
+    .sub {
+      font-size: clamp(12px, 3.6vw, 14px);
+      color: #444;
+      font-weight: 500;
+    }
+    h2 {
+      margin: 0;
+      font-size: clamp(13px, 4vw, 15px);
+      color: #333;
+      font-style: italic;
+      font-weight: 600;
+    }
+    .actions {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+      margin-top: 10px;
+    }
+    .btn {
+      flex: 1;
+      min-width: 120px;
+      max-width: 160px;
+      padding: 6px 10px;
+      border: 2px solid var(--fg);
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--fg);
+      background: #fff;
+      font-size: 13px;
+    }
+    .btn:hover {
+      background: #f7f5f1;
+      border-color: var(--accent);
+    }
+    .player-card {
+      width: 100%;
+      max-width: 420px;
+      background: #fafafa;
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 3px 5px;
+      margin-top: 10px;
+    }
+    audio { width: 100%; }
+    .note {
+      color: var(--danger);
+      font-weight: 700;
+      font-size: 12px;
+      text-align: center;
+      margin-top: 8px;
+    }
   </style>
 </head>
 <body>
-  <h1 id="werk-title">Lade Werk …</h1>
-  <div id="exhibition-info"></div>
-  <h2 id="werk-serie"></h2>
+  <div class="page">
+    <main class="wrap">
+      <img class="top-logo" src="Logo.jpg" alt="Flu Logo" onerror="this.style.display='none'">
+      <h1 id="ort">Ausstellungsort</h1>
+      <div class="sub" id="ausstellungDatum">Titel · Datum</div>
+      <h2 id="werkSerie">Werk + Serie</h2>
 
-  <div>
-    <a class="btn" id="audio-link" href="#" target="_blank">🎧 Audio</a>
-    <a class="btn" id="pdf-link" href="#" target="_blank">📄 PDF anzeigen</a>
-    <a class="btn" href="https://www.flu.ruhr/uber" target="_blank">ℹ️ Info Künstler</a>
+      <div class="actions">
+        <a class="btn" id="audio-link" href="#" target="_blank">🎧 Audio</a>
+        <a class="btn" id="pdf-link" href="#" target="_blank">📄 PDF anzeigen</a>
+        <a class="btn" href="https://www.flu.ruhr/uber" target="_blank">ℹ️ Info Künstler</a>
+      </div>
+
+      <div class="player-card">
+        <audio controls preload="metadata" id="player" aria-label="Audiobeschreibung">
+          <source id="audio-src" src="" type="audio/mpeg">
+          Dein Browser unterstützt das Audio-Element nicht.
+        </audio>
+      </div>
+
+      <p class="note">Bitte Kopfhörer verwenden oder die Lautstärke so wählen,<br> dass andere Besucher nicht gestört werden.</p>
+    </main>
   </div>
 
-  <p class="note">Bitte Kopfhörer verwenden oder die Lautstärke so wählen, dass andere Besucher nicht gestört werden.</p>
-
+  <script src="werke.js"></script>
   <script>
-    async function loadWerk() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const werkId = urlParams.get("id");
-      if (!werkId) {
-        document.body.innerHTML = "<p>Fehlende ID in der URL. Beispiel: ?id=resonanzkern</p>";
-        return;
-      }
+    const params = new URLSearchParams(window.location.search);
+    const werkId = params.get("id");
+    const werk = window.WERKE.find(w => w.id === werkId);
 
-      const response = await fetch("werke.json");
-      const werke = await response.json();
-      const werk = werke.find(w => w.id === werkId);
-
-      if (!werk) {
-        document.body.innerHTML = "<p>Werk nicht gefunden.</p>";
-        return;
-      }
-
-      document.getElementById("werk-title").textContent = werk.werk;
-      document.getElementById("werk-serie").textContent = `Werk aus der Serie „${werk.serie}“`;
-      document.getElementById("exhibition-info").textContent = `${werk.ort} – ${werk.ausstellung} · ${werk.datum}`;
+    if (werk) {
+      document.title = werk.ort + " – " + werk.werk;
+      document.getElementById("ort").textContent = werk.ort;
+      document.getElementById("ausstellungDatum").textContent = werk.ausstellung + " · " + werk.datum;
+      document.getElementById("werkSerie").textContent = werk.werk + " – ein Werk aus der Werkserie „" + werk.serie + "“";
       document.getElementById("audio-link").href = werk.audio;
       document.getElementById("pdf-link").href = werk.pdf;
+      document.getElementById("audio-src").src = werk.audio;
+      document.getElementById("player").load();
+    } else {
+      document.querySelector(".wrap").innerHTML = "<p>Kein gültiges Werk gefunden.</p>";
     }
-
-    loadWerk();
   </script>
 </body>
 </html>
