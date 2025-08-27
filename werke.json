@@ -1,14 +1,14 @@
 [
-  {
-    "id": "-bodenproben-der-erinnerung",
-    "ort": "Kühlhaus Berlin",
-    "ausstellung": "Bridging Cultures",
-    "datum": "03.10.25 – 05.10.25",
-    "werk": " Bodenproben der Erinnerung",
-    "serie": "Was bleibt",
-    "audio": " Bodenproben der Erinnerung.mp3",
-    "pdf": " Bodenproben der Erinnerung.pdf"
-  },
+{
+  "id": "bodenproben-der-erinnerung",
+  "ort": "Kühlhaus Berlin",
+  "ausstellung": "Bridging Cultures",
+  "datum": "03.10.25 – 05.10.25",
+  "werk": "Bodenproben der Erinnerung",
+  "serie": "Was bleibt",
+  "audio": "bodenproben-der-erinnerung.mp3",
+  "pdf": "bodenproben-der-erinnerung.pdf"
+},
   {
     "id": "-die-letzten-funde-unter-tage",
     "ort": "Kühlhaus Berlin",
